@@ -57,7 +57,8 @@ export function Results(props){
         <p>Feedback: {feedback}</p>
         <br></br>
         <p>Your transcribed answer: {props.userAnswer}</p>
-        <button onClick = {()=>{setDebug(!debug)}}>{debug ? "turn debug off" : "turn debug on"}</button>
+        <br></br>
+        <button onClick = {()=>{setDebug(!debug)}}>{debug ? "hide debug data" : "show debug data"}</button>
         {debug ? <p>{apiResponse}</p> : <></>}
     </div>);
 }
