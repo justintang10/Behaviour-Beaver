@@ -1,38 +1,47 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Respond } from './states/Respond';
+import { Results } from './states/Results';
+import { Start } from './states/Start';
+
+type possibleState = "start" | "respond" | "results";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentState, setCurrentState] = useState<possibleState>("start");
+  const [question, setQuestion] = useState<string>(undefined);
+  const [userAnswer, setUserAnswer] = useState<string>(undefined);
+  const [feedback, setFeedback] = useState<object>(undefined);
 
   return (
-    <div className="App">
+    // div for whole page
+    <div className="w-[100vw] h-[100vh] flex items-center align-middle justify-center">
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      <h1 className="text-3xl font-bold underline text-red-600">
-      Tailwind working????
-    </h1>
+        {currentState === "start" ? (
+          <Start
+            setCurrentState={setCurrentState}
+            question={question}
+            setQuestion={setQuestion}
+          />
+        ) : currentState === "respond" ? (
+          <Respond
+            setCurrentState={setCurrentState}
+            question={question}
+            setUserAnswer={setUserAnswer}
+            setFeedback = {setFeedback}
+          />
+        ) : currentState === "results" ? (
+          <Results
+            setCurrentState={setCurrentState}
+            question={question}
+            userAnswer={userAnswer}
+            feedback = {feedback}
+          />
+        ) : (
+          <p>invalid state</p>
+        )}
       </div>
-      <h1>Vite + fskdjhfskdjfh React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
-  )
+  );
 }
 
 export default App
