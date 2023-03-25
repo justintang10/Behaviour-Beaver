@@ -16,12 +16,12 @@ class CustomFormData extends FormData {
 
 function App() {
   const [currentState, setCurrentState] = useState<possibleState>("respond");
-  const [question, setQuestion] = useState<string>("undefined question text");
+  const [question, setQuestion] = useState<string>("tell me about a time you had to face criticism");
   const [userAnswer, setUserAnswer] = useState<string>(undefined);
   const [feedback, setFeedback] = useState<object>(undefined);
 
   const [configuration, dontUse] = useState(new Configuration({
-    apiKey: "REPLACE WITH API KEY",
+    apiKey: "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",
     formDataCtor: CustomFormData
   }));
 
