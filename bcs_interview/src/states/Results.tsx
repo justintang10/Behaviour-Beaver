@@ -21,19 +21,29 @@ export function Results(props){
             });
                 
             setapiResponse(response.data.choices[0].text);
+
+
             console.log(response)
             console.log(response.data.choices[0].text);
             const jsonObject = JSON.parse(response.data.choices[0].text);
             console.log(jsonObject);
+            try{
+              setRating(jsonObject.rating);
+              setFeedback(jsonObject.rating);
+            } catch {
+
+            }
         })();
 
     },[]);
 
     return(
     <div>
+        <p>Question: {props.question}</p>
         <p>this is the results page component</p>
-        <p>{rating}</p>
-        <p>{feedback}</p>
+        <p>Rating: {rating}</p>
+        <p>Feedback: {feedback}</p>
+        <p>Your transcribed answer: {props.userAnswer}</p>
         <p>{apiResponse}</p>
     </div>);
 }
