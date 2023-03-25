@@ -19,23 +19,12 @@ export function Results(props){
               temperature: 0,
               max_tokens: 2000,
             });
-
-          console.log(response);
-
-            
-            const responseText = response.data.choices[0].text;
-
-            try{
-                const obj = JSON.parse(responseText)
-                //feedback, rating
-                setRating(obj.rating);
-                setFeedback(obj.feedback);
-            } catch{
-                setapiResponse(responseText);
-            }
-
-                console.log(response)
-                console.log(response.data.choices[0].text);
+                
+            setapiResponse(response.data.choices[0].text);
+            console.log(response)
+            console.log(response.data.choices[0].text);
+            const jsonObject = JSON.parse(response.data.choices[0].text);
+            console.log(jsonObject);
         })();
 
     },[]);
