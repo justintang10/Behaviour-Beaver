@@ -32,7 +32,7 @@ export function Start(props) {
              }}>
             <p
                 style={{
-                    marginTop: "65%",
+                    marginTop: "43%",
                 }}
             ></p>
             <button className="button" onClick={handleRandomClick}>Start Interview with random generated question</button>
