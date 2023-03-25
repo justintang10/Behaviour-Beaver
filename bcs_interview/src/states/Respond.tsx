@@ -21,6 +21,8 @@ export function Respond(props){
       audioFile,
       "whisper-1"
       );
+
+      console.log(resp);
       
       setTranscribedText(resp.data.text);
       props.setUserAnswer(resp.data.text);

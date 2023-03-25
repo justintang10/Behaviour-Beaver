@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 export function Results(props){
 
     const [apiResponse, setapiResponse] = useState(null)
+    const [feedback, setFeedback] = useState(null)
+    const [rating, setRating] = useState(0);
+
+  //feedback, rating
 
     useEffect(()=>{
 
@@ -15,8 +19,21 @@ export function Results(props){
               temperature: 0,
               max_tokens: 2000,
             });
-                
-                setapiResponse(response.data.choices[0].text);
+
+          console.log(response);
+
+            
+            const responseText = response.data.choices[0].text;
+
+            try{
+                const obj = JSON.parse(responseText)
+                //feedback, rating
+                setRating(obj.rating);
+                setFeedback(obj.feedback);
+            } catch{
+                setapiResponse(responseText);
+            }
+
                 console.log(response)
                 console.log(response.data.choices[0].text);
         })();
@@ -26,6 +43,8 @@ export function Results(props){
     return(
     <div>
         <p>this is the results page component</p>
+        <p>{rating}</p>
+        <p>{feedback}</p>
         <p>{apiResponse}</p>
     </div>);
 }
