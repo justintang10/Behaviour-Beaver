@@ -16,9 +16,11 @@ export function Results(props){
               max_tokens: 2000,
             });
                 
-                setapiResponse(response.data.choices[0].text);
-                console.log(response)
-                console.log(response.data.choices[0].text);
+            setapiResponse(response.data.choices[0].text);
+            console.log(response)
+            console.log(response.data.choices[0].text);
+            const jsonObject = JSON.parse(response.data.choices[0].text);
+            console.log(jsonObject);
         })();
 
     },[]);

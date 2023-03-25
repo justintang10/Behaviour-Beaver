@@ -21,7 +21,11 @@ function App() {
   const [feedback, setFeedback] = useState<object>(undefined);
 
   const [configuration, dontUse] = useState(new Configuration({
+<<<<<<< Updated upstream
     apiKey: "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",
+=======
+    apiKey: "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",
+>>>>>>> Stashed changes
     formDataCtor: CustomFormData
   }));
 
