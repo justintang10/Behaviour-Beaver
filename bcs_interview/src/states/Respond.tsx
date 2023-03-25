@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { ReactMediaRecorder } from "react-media-recorder";
 import { useReactMediaRecorder } from "react-media-recorder";
 
-import { Configuration, OpenAIApi } from "openai";
-
+import { MdMic } from "react-icons/md";
 
 export function Respond(props){
 
@@ -38,18 +37,19 @@ export function Respond(props){
       <div>
         <p>Question:</p>
         <p className = "text-3xl">{props.question}</p>
-        <p>this is the respond page component</p>
+        {/* <p>this is the respond page component</p>
         <p>would be cool to have a mic graphic here that responded
             to voice
         </p>
-        <h1>{transcribedText}</h1>
-        <div>
-          <p>{status}</p>
-          <button onClick={startRecording}>Start Recording</button>
-          <p>below thing is for debugging</p>
-          <audio src={mediaBlobUrl} controls autoPlay loop />
-          <button onClick = {stopRecording}>stop recording!!!</button>
-          <button onClick = {()=>{makeAPICall()}}>Send audio File to openAI for transcription</button>
+        <h1>{transcribedText}</h1> */}
+        <div className="flex flex-col align-middle justify-center items-center">
+          {/* <p>{status}</p> */}
+          {/* <button onClick={startRecording}>Start Recording</button> */}
+          {/* <p>below thing is for debugging</p> */}
+          {/* <audio src={mediaBlobUrl} controls autoPlay loop /> */}
+          {/* <button onClick = {stopRecording}>stop recording!!!</button> */}
+          <MdMic className="w-48 h-1/4 animate-pulse bg-red-600 rounded-full m-10"/>
+          <button onClick = {()=>{makeAPICall()}}>Stop recording and see results</button>
         </div>
       </div>
     );
