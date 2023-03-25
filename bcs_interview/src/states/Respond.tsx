@@ -12,7 +12,6 @@ export function Respond(props){
   useReactMediaRecorder({ video: false });
     
   async function makeAPICall() {
-    stopRecording();
 
     const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
     const audioFile = new File([audioBlob], 'voice.wav', { type: 'audio/wav' });
@@ -51,7 +50,8 @@ export function Respond(props){
           {/* <audio src={mediaBlobUrl} controls autoPlay loop /> */}
           {/* <button onClick = {stopRecording}>stop recording!!!</button> */}
           <MdMic className="w-48 h-1/4 animate-pulse bg-red-600 rounded-full m-10"/>
-          <button onClick = {()=>{makeAPICall()}}>Stop recording and see results</button>
+          <button onClick = {stopRecording}>Stop recording</button>
+          <button onClick = {()=>{makeAPICall()}}>See results</button>
         </div>
       </div>
     );
