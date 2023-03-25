@@ -15,6 +15,9 @@ function App() {
         <a href="https://reactjs.org" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
+      <h1 className="text-3xl font-bold underline text-red-600">
+      Tailwind working????
+    </h1>
       </div>
       <h1>Vite + fskdjhfskdjfh React</h1>
       <div className="card">
