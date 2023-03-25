@@ -21,7 +21,7 @@ function App() {
   const [feedback, setFeedback] = useState<object>(undefined);
 
   const [configuration, dontUse] = useState(new Configuration({
-    apiKey: "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",
+    apiKey: "ENTER KEY HERE",
     formDataCtor: CustomFormData
   }));
 

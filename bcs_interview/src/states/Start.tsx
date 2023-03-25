@@ -1,3 +1,5 @@
+import logo from '../resources/beaverLogo.png';
+
 export function Start(props) {
     const { setCurrentState, setQuestion } = props;
 
@@ -17,9 +19,23 @@ export function Start(props) {
     }
 
     return (
-        <div>
-            <p>Welcome to APP NAME!</p>
-            <button onClick={handleRandomClick}>Start Interview with random generated question</button>
+        <div style={{ 
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            backgroundImage: `url(${logo})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            width: '100vw',
+            height: '100vh'
+             }}>
+            <p
+                style={{
+                    marginTop: "65%",
+                }}
+            ></p>
+            <button className="button" onClick={handleRandomClick}>Start Interview with random generated question</button>
             {/* <button onClick={handleCustomClick}>Start Interview with my own question</button> */}
         </div>);
 }
