@@ -1,3 +1,4 @@
+import { Configuration, OpenAIApi } from 'openai';
 import { useState } from 'react'
 import './App.css'
 import { Respond } from './states/Respond';
@@ -6,11 +7,25 @@ import { Start } from './states/Start';
 
 type possibleState = "start" | "respond" | "results";
 
+// helper function for openai calls
+class CustomFormData extends FormData {
+  getHeaders() {
+      return {}
+  }
+}
+
 function App() {
-  const [currentState, setCurrentState] = useState<possibleState>("start");
-  const [question, setQuestion] = useState<string>(undefined);
+  const [currentState, setCurrentState] = useState<possibleState>("respond");
+  const [question, setQuestion] = useState<string>("undefined question text");
   const [userAnswer, setUserAnswer] = useState<string>(undefined);
   const [feedback, setFeedback] = useState<object>(undefined);
+
+  const [configuration, dontUse] = useState(new Configuration({
+    apiKey: "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",
+    formDataCtor: CustomFormData
+  }));
+
+  const [openai, alsoDontUse] = useState(new OpenAIApi(configuration));
 
   return (
     // div for whole page
@@ -28,6 +43,8 @@ function App() {
             question={question}
             setUserAnswer={setUserAnswer}
             setFeedback = {setFeedback}
+            configuration = {configuration}
+            openai = {openai}
           />
         ) : currentState === "results" ? (
           <Results
@@ -35,6 +52,8 @@ function App() {
             question={question}
             userAnswer={userAnswer}
             feedback = {feedback}
+            configuration = {configuration}
+            openai = {openai}
           />
         ) : (
           <p>invalid state</p>

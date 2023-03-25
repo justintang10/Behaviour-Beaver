@@ -1,6 +1,57 @@
+import { useEffect, useState } from "react";
+import { ReactMediaRecorder } from "react-media-recorder";
+import { useReactMediaRecorder } from "react-media-recorder";
+
+import { Configuration, OpenAIApi } from "openai";
+
+
 export function Respond(props){
-    return(
-    <div>
+
+  const [transcribedText, setTranscribedText] = useState("");
+
+  const { status, startRecording, stopRecording, mediaBlobUrl } =
+  useReactMediaRecorder({ video: false });
+    
+  async function makeAPICall() {
+    stopRecording();
+
+    const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
+    const audioFile = new File([audioBlob], 'voice.wav', { type: 'audio/wav' });
+
+    const resp = await props.openai.createTranscription(
+      audioFile,
+      "whisper-1"
+      );
+      
+      setTranscribedText(resp.data.text);
+      props.setUserAnswer(resp.data.text);
+      
+      console.log(resp.data.text);
+      props.setCurrentState("results");
+    }
+
+    useReactMediaRecorder({ video: false });
+    
+    useEffect(()=>{startRecording()}, [])
+    
+    return (
+      <div>
+        <p>Question:</p>
+        <p className = "text-3xl">{props.question}</p>
         <p>this is the respond page component</p>
-    </div>);
+        <p>would be cool to have a mic graphic here that responded
+            to voice
+        </p>
+        <h1>{transcribedText}</h1>
+        <div>
+          <p>{status}</p>
+          <button onClick={startRecording}>Start Recording</button>
+          <p>below thing is for debugging</p>
+          <audio src={mediaBlobUrl} controls autoPlay loop />
+          <button onClick = {stopRecording}>stop recording!!!</button>
+          <button onClick = {()=>{makeAPICall()}}>Send audio File to openAI for transcription</button>
+        </div>
+      </div>
+    );
 }
+
