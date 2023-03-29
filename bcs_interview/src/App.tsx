@@ -10,7 +10,7 @@ type possibleState = "start" | "respond" | "results";
 // helper function for openai calls
 class CustomFormData extends FormData {
   getHeaders() {
-      return {}
+    return {}
   }
 }
 
@@ -21,7 +21,7 @@ function App() {
   const [feedback, setFeedback] = useState<object>(undefined);
 
   const [configuration, dontUse] = useState(new Configuration({
-    apiKey: "ENTER KEY HERE",
+    apiKey: "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",
     formDataCtor: CustomFormData
   }));
 
@@ -42,18 +42,18 @@ function App() {
             setCurrentState={setCurrentState}
             question={question}
             setUserAnswer={setUserAnswer}
-            setFeedback = {setFeedback}
-            configuration = {configuration}
-            openai = {openai}
+            setFeedback={setFeedback}
+            configuration={configuration}
+            openai={openai}
           />
         ) : currentState === "results" ? (
           <Results
             setCurrentState={setCurrentState}
             question={question}
             userAnswer={userAnswer}
-            feedback = {feedback}
-            configuration = {configuration}
-            openai = {openai}
+            feedback={feedback}
+            configuration={configuration}
+            openai={openai}
           />
         ) : (
           <p>invalid state</p>
